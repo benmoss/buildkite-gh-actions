@@ -27,3 +27,4 @@ runs:
       run: ~/.buildkite-agent/bin/buildkite-agent start
       env:
         BUILDKITE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT: ${{ inputs.idleTimeout }}
+        BUILDKITE_AGENT_TAGS: ${{ github.ref }}
