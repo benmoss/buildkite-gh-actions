@@ -10,9 +10,16 @@ on:
 jobs:
   buildkite:
     runs-on: ubuntu-latest
-    container:
-      image: buildkite/agent
     steps:
-      - run: buildkite-agent start --disconnect-after-job
+      - name: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.buildkite-agent
+      - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        name: install
+        run: bash -c "`curl -sL https://raw.githubusercontent.com/buildkite/agent/master/install.sh`"
         env:
-          BUILDKITE_AGENT_TOKEN: ${{ secrets.buildkite_token }}
+          TOKEN: ${{ secrets.buildkite_token }}
+      - name: run
+        run: ~/.buildkite-agent/bin/buildkite-agent start --disconnect-after-job
