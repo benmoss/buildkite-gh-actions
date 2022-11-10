@@ -8,11 +8,11 @@ on:
     branches: ["main"]
 
 jobs:
-  check-bats-version:
+  buildkite:
     runs-on: ubuntu-latest
     container:
       image: buildkite/agent
     steps:
-      - run: start --disconnect-after-job
+      - run: buildkite-agent start --disconnect-after-job
         env:
           BUILDKITE_AGENT_TOKEN: ${{ secrets.buildkite_token }}
