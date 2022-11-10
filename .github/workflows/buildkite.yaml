@@ -14,6 +14,7 @@ jobs:
       - name: cache
         uses: actions/cache@v3
         with:
+          key: ${{ runner.os }}-buildkite
           path: |
             ~/.buildkite-agent
       - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
