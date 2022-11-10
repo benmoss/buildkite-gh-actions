@@ -11,19 +11,7 @@ jobs:
   buildkite:
     runs-on: ubuntu-latest
     steps:
-      - name: cache
-        id: cache
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-buildkite
-          path: |
-            ~/.buildkite-agent
-      - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        name: install
-        run: bash -c "`curl -sL https://raw.githubusercontent.com/buildkite/agent/master/install.sh`"
+      - uses: benmoss/buildkite-gh-actions@v1
         env:
           TOKEN: ${{ secrets.buildkite_token }}
-      - name: run
-        run: ~/.buildkite-agent/bin/buildkite-agent start
-        env:
           BUILDKITE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT: 20
