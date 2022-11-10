@@ -1,4 +1,4 @@
-name: "buildkite agent"
+name: "buildkite-runner"
 description: "run buildkite jobs from github actions"
 inputs:
   idleTimeout:
