@@ -1,5 +1,13 @@
 name: "buildkite agent"
 description: "run buildkite jobs from github actions"
+inputs:
+  idleTimeout:
+    description: "The maximum idle time in seconds to wait for a job before disconnecting."
+    default: "20"
+    required: false
+  token:
+    description: "Your account agent token."
+    required: true
 runs:
   using: "composite"
   steps:
@@ -14,10 +22,8 @@ runs:
       shell: bash
       name: install
       run: bash -c "`curl -sL https://raw.githubusercontent.com/buildkite/agent/master/install.sh`"
-      env:
-        TOKEN: ${{ secrets.buildkite_token }}
     - name: run
       shell: bash
       run: ~/.buildkite-agent/bin/buildkite-agent start
       env:
-        BUILDKITE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT: "20"
+        BUILDKITE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT: ${{ inputs.idleTimeout }}

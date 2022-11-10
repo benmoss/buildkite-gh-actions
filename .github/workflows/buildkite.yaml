@@ -12,6 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: benmoss/buildkite-gh-actions@v1
-        env:
-          TOKEN: ${{ secrets.buildkite_token }}
-          BUILDKITE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT: 20
+        with:
+          token: ${{ secrets.buildkite_token }}
