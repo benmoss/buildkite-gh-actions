@@ -26,5 +26,4 @@ jobs:
       - name: run
         run: ~/.buildkite-agent/bin/buildkite-agent start
         env:
-          BUILDKITE_AGENT_DISCONNECT_AFTER_JOB: true
           BUILDKITE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT: 5
