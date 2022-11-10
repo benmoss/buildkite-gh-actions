@@ -1,0 +1,18 @@
+name: buildkite-agent
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    container:
+      image: buildkite/agent
+    steps:
+      - run: start --disconnect-after-job
+        env:
+          BUILDKITE_AGENT_TOKEN: ${{ secrets.buildkite_token }}
