@@ -11,6 +11,6 @@ jobs:
   buildkite:
     runs-on: ubuntu-latest
     steps:
-      - uses: benmoss/buildkite-gh-actions@main
+      - uses: benmoss/buildkite-gh-actions@debug
         with:
           token: ${{ secrets.buildkite_token }}
