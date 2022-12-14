@@ -21,9 +21,9 @@ runs:
     - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       shell: bash
       name: install
+      env:
+        TOKEN: ${{ inputs.token }}
       run: |
-        set -ex
-        env
         bash -c "`curl -sL https://raw.githubusercontent.com/buildkite/agent/master/install.sh`"
     - name: run
       shell: bash
